@@ -1,4 +1,4 @@
-<?php 
+lb<?php 
 
 /*
 @package sunsettheme
@@ -12,7 +12,8 @@ function sunset_add_admin_page() {
   add_menu_page('Sunset Theme Option', 'Sunset', 'manage_options', 'imon_sunset', 'sunset_theme_create_page', get_template_directory_uri() . '/img/sunset-icon.png', 110);
 
   // Generate Sunset Admin Sub Pages
-  add_submenu_page('imon_sunset', 'Sunset Theme Option', 'Settings', 'manage_options', 'imon_sunset', 'sunset_theme_settings_page');
+  add_submenu_page('imon_sunset', 'Sunset Sidebar Option', 'Sidebar', 'manage_options', 'imon_sunset', 'sunset_theme_settings_page');
+  add_submenu_page('imon_sunset', 'Sunset Theme Option', 'Theme Options', 'manage_options', 'imon_sunset_theme', 'sunset_theme_support_page');
   add_submenu_page('imon_sunset', 'Sunset CSS Option', 'Custom CSS', 'manage_options', 'imon_sunset_css', 'sunset_theme_settings_page');
 }
 add_action('admin_menu', 'sunset_add_admin_page');
@@ -21,6 +22,7 @@ add_action('admin_menu', 'sunset_add_admin_page');
 add_action('admin_init', 'sunset_custom_settings');
 
 function sunset_custom_settings() {
+  // Sidebar Options
   register_setting( 'sunset-settings-group', 'profile_picture' );
   register_setting( 'sunset-settings-group', 'first_name' );
   register_setting( 'sunset-settings-group', 'last_name' );
@@ -37,8 +39,34 @@ function sunset_custom_settings() {
   add_settings_field( 'sidebar-x', 'X handler', 'sunset_sidebar_x', 'imon_sunset', 'sunset-sidebar-options' );
   add_settings_field( 'sidebar-google', 'Google+ handler', 'sunset_sidebar_google', 'imon_sunset', 'sunset-sidebar-options' );
   add_settings_field( 'sidebar-facebook', 'Facebook handler', 'sunset_sidebar_facebook', 'imon_sunset', 'sunset-sidebar-options' );
+
+  //Theme Support Options
+  register_setting('sunset-theme-support', 'post_formats', 'sunset_post_formats_callback');
   
+  add_settings_section('sunset-theme-options', 'Theme Options', 'sunset_theme_options', 'imon_sunset_theme');
+
+  add_settings_field('post_formats', 'Post Formats', 'sunset_post_formats', 'imon_sunset_theme', 'sunset-theme-options');
 }
+
+//Post Formats Callback Function
+function sunset_post_formats_callback($input){
+  return $input;
+}
+
+function sunset_theme_options() {
+  echo 'Activate and Deactive specific Theme Support Options';
+}
+
+function sunset_post_formats() {
+  $formats = array('aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat');
+  $output = '';
+  foreach($formats as $format){
+    $output .= '<label><input type="checkbox" id="' . $format . '" name="' . $format . '" value="1"> '. $format .'</label><br>';
+  }
+  echo $output;
+}
+
+//Sidebar Options Functions
 
 function sunset_sidebar_options() {
   echo 'Customize your Sidebar Information';
@@ -85,8 +113,14 @@ function sunset_sanitize_x_handler($input) {
   return $output;
 }
 
+/*-------------- Template submenu functions =======================*/
+
 function sunset_theme_create_page() {
   require_once(get_template_directory() . '/inc/templates/sunset-admin.php');
+}
+
+function sunset_theme_support_page() {
+  require_once( get_template_directory() . '/inc/templates/sunset-theme-support.php' );
 }
 
 function sunset_theme_settings_page() {
