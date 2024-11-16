@@ -2,6 +2,7 @@
 
 require get_template_directory() . '/inc/function-admin.php';
 require get_template_directory() . '/inc/enqueue.php';
+require get_template_directory() . '/inc/theme-support.php';
 
 /**
  * Proper way to enqueue scripts and styles
@@ -15,9 +16,12 @@ add_action( 'wp_enqueue_scripts', 'wpdocs_theme_name_scripts' );
 //if you want to see on your screen
 // print_r( filemtime( get_template_directory() . '/style.css' ) );
 // echo get_template_directory() . '/admin-custom.css';
-
- 
- 
+/*
+function custom_theme_support() {
+  add_theme_support('post-formats', array('aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat'));
+}
+add_action('after_setup_theme', 'custom_theme_support');
+ */
 // function my_admin_theme_style() {
 //     wp_enqueue_style('my-admin-style', get_template_directory_uri() . '/css/sunset.admin.css');
 // }

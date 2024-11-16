@@ -1,4 +1,4 @@
-lb<?php 
+<?php 
 
 /*
 @package sunsettheme
