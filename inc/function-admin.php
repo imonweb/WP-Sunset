@@ -69,7 +69,6 @@ function sunset_post_formats() {
 }
 
 //Sidebar Options Functions
-
 function sunset_sidebar_options() {
   echo 'Customize your Sidebar Information';
 }
