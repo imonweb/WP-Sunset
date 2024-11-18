@@ -2,7 +2,8 @@ jQuery(document).ready(function($){
   var mediaUploader;
 
   $('#upload-button').on('click',function(e){
-    e.preventDefault();
+    console.log('hello');
+    // e.preventDefault();
     if(mediaUploader){
       mediaUploader.open();
       return;
@@ -25,4 +26,18 @@ jQuery(document).ready(function($){
 
     mediaUploader.open();
   });
+
+  $('#remove-picture').on('click', function(e){
+    console.log('remove picture');
+    // e.preventDefault();
+    // var answer = confirm('Are you sure you want to remove your Profile Picture?');
+    // if( answer == true){
+    //   console.log('Yese, please delete');
+    // } else {
+    //   console.log('Pleaes dont!');
+    // }
+    // return 
+  });
+
 });
+ 

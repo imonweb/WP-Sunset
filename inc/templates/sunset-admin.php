@@ -12,7 +12,7 @@
 <div class="sunset-sidebar-preview">
   <div class="sunset-sidebar">
     <div class="image-container">
-      <div class="profile-picture" class="profile-picture" style="background-image: url(<?php print $picture; ?>)">
+      <div class="profile-picture-preview" class="profile-picture" style="background-image: url(<?php print $picture; ?>)">
       </div>
     </div>
     <h1 class="sunset-username"><?php print $fullName; ?></h1>
