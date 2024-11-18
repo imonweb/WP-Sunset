@@ -13,7 +13,7 @@ function sunset_add_admin_page() {
 
   // Generate Sunset Admin Sub Pages
   add_submenu_page('imon_sunset', 'Sunset Sidebar Option', 'Sidebar', 'manage_options', 'imon_sunset', 'sunset_theme_settings_page');
-  add_submenu_page('imon_sunset', 'Sunset Theme Option', 'Theme Options', 'manage_options', 'imon_sunset_theme', 'sunset_theme_support_page');
+  add_submenu_page('imon_sunset', 'Sunset Theme Option', 'Theme Options', 'manage_options', 'imon_sunset_theme','sunset_theme_support_page');
   add_submenu_page('imon_sunset', 'Sunset CSS Option', 'Custom CSS', 'manage_options', 'imon_sunset_css', 'sunset_theme_settings_page');
 }
 add_action('admin_menu', 'sunset_add_admin_page');
@@ -53,8 +53,6 @@ function sunset_post_formats_callback($input){
   return $input;
 }
 
- 
-
 function sunset_theme_options() {
   echo 'Activate and Deactive specific Theme Support Options';
 }
@@ -77,12 +75,9 @@ function sunset_sidebar_options() {
 }
 
 function sunset_sidebar_profile() {
-  $picture = esc_attr( get_option( 'profile_picture' ) );
-  if( empty($picture) ){
-    echo '<input type="button" class="button button-secondary" value="Upload Profile Picture" id="upload-button"><input type="hidden" id="profile-picture" name="profile_picture" value="" />';
-  } else {
-    echo '<input type="button" class="button button-secondary" value="Replace Profile Picture" id="upload-button"><input type="hidden" id="profile-picture" name="profile_picture" value="'.$picture.'" /> <input type="button" class="button button-secondary" value="Remove" id="remove-picture">';
-  }
+  $picture = esc_attr( get_option('profile_picture') );
+
+  echo '<input type="button" class="button button-secondary" value="Upload Profile Pictue" id="upload-button"><input type="hidden" id="profile-picture" name="profile_picture" value="'.$picture.'" />';
 }
 
 function sunset_sidebar_name() {
