@@ -41,17 +41,21 @@ function sunset_custom_settings() {
   add_settings_field( 'sidebar-facebook', 'Facebook handler', 'sunset_sidebar_facebook', 'imon_sunset', 'sunset-sidebar-options' );
 
   //Theme Support Options
-  register_setting('sunset-theme-support', 'post_formats', 'sunset_post_formats_callback');
+  register_setting('sunset-theme-support', 'post_formats');
+  register_setting('sunset-theme-support', 'custom_header');
+  register_setting('sunset-theme-support', 'custom_background');
   
   add_settings_section('sunset-theme-options', 'Theme Options', 'sunset_theme_options', 'imon_sunset_theme');
 
   add_settings_field('post_formats', 'Post Formats', 'sunset_post_formats', 'imon_sunset_theme', 'sunset-theme-options');
+  add_settings_field('custom-header', 'Custom Header', 'sunset_custom_header', 'imon_sunset_theme', 'sunset-theme-options');
+  add_settings_field('custom-background', 'Custom Background', 'sunset_custom_background', 'imon_sunset_theme', 'sunset-theme-options');
 }
 
 //Post Formats Callback Function
-function sunset_post_formats_callback($input){
-  return $input;
-}
+// function sunset_post_formats_callback($input){
+//   return $input;
+// }
 
 function sunset_theme_options() {
   echo 'Activate and Deactive specific Theme Support Options';
@@ -67,6 +71,21 @@ function sunset_post_formats() {
   }
   echo $output;
 }
+
+function sunset_custom_header() {
+  $options =  get_option( 'custom_header' );
+  $checked = (@$options == 1 ? 'checked' : '');
+  echo '<label><input type="checkbox" id="custom_header" name="custom_header" value="1" '. $checked .'/> Activate the Custom Header</label>';
+ 
+}
+
+function sunset_custom_background() {
+  $options =  get_option( 'custom_background' );
+  $checked = (@$options == 1 ? 'checked' : '');
+  echo '<label><input type="checkbox" id="custom_background" name="custom_background" value="1" '. $checked .'/> Activate the Custom Background</label>';
+ 
+}
+
 
 //Sidebar Options Functions
 function sunset_sidebar_options() {
