@@ -86,7 +86,7 @@ function sunset_post_formats() {
   $formats = array('aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat');
   $output = '';
   foreach($formats as $format){
-    $checked = (@$options[$format] == 1 ? 'checked' : '');
+    $checked = (@$options[$format] == 1 ? 'checked' : ''); // part8 32:00 mins
     $output .= '<label><input type="checkbox" id="' . $format . '" name="post_formats[' . $format . ']" value="1" '. $checked .'/> '. $format .'</label><br>';
   }
   echo $output;
