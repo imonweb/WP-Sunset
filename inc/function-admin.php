@@ -59,14 +59,27 @@ function sunset_custom_settings() {
 
   add_settings_field( 'activate-form', 'Activate Contact Form', 'sunset_activate_contact', 'imon_sunset_theme_contact', 'sunset-contact-section'  );
 
+  //Custom CSS Options
+  register_setting('sunset-custom-css-options', 'sunset_css', 'sunset_sanitize_custom_css');
+
+  add_settings_section('sunset-custom-css-section', 'Custom CSS', 'sunset_custom_css_section_callback', 'imon_sunset_css');
+
+  add_settings_field('custom-css', 'Insert your Custom CSS', 'sunset_custom_css_callback', 'imon_sunset_csss', 'sunset-custom-css-section');
+
 } // sunset_custom_settings
 
-//Post Formats Callback Function
-// function sunset_post_formats_callback($input){
-//   return $input;
-// }
-
 /*=============== Activate and Deactive =======================*/
+
+function sunset_custom_css_section_callback() {
+  echo 'Customize Sunset Theme with your own CSS';
+}
+
+function sunset_custom_css_callback() {
+	$css = get_option( 'sunset_css' );
+	$css = ( empty($css) ? '/* Sunset Theme Custom CSS */' : $css );
+	echo '<div id="customCss">'.$css.'</div><textarea id="sunset_css" name="sunset_css" style="display:none;visibility:hidden;">'.$css.'</textarea>';
+}
+
 function sunset_theme_options() {
   echo 'Activate and Deactive specific Theme Support Options';
 }
@@ -157,6 +170,11 @@ function sunset_sanitize_x_handler($input) {
   return $output;
 }
 
+function sunset_sanitize_custom_css($input) {
+  $output = esc_textarea($input);
+  return $output;
+}
+
 /*=============== Template submenu functions =======================*/
 
 function sunset_theme_create_page() {
@@ -172,7 +190,7 @@ function sunset_contact_form_page() {
 }
 
 function sunset_theme_settings_page() {
- echo '<h1>Sunset CSS Theme</h1>';
+ require_once( get_template_directory() . '/inc/templates/sunset-custom-css.php' );
 }
 
 
