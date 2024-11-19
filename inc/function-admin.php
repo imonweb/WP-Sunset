@@ -14,6 +14,7 @@ function sunset_add_admin_page() {
   // Generate Sunset Admin Sub Pages
   add_submenu_page('imon_sunset', 'Sunset Sidebar Option', 'Sidebar', 'manage_options', 'imon_sunset', 'sunset_theme_settings_page');
   add_submenu_page('imon_sunset', 'Sunset Theme Option', 'Theme Options', 'manage_options', 'imon_sunset_theme','sunset_theme_support_page');
+  add_submenu_page('imon_sunset', 'Sunset Contact Form', 'Contact Form', 'manage_options', 'imon_sunset_theme_contact','sunset_contact_form_page');
   add_submenu_page('imon_sunset', 'Sunset CSS Option', 'Custom CSS', 'manage_options', 'imon_sunset_css', 'sunset_theme_settings_page');
 }
 add_action('admin_menu', 'sunset_add_admin_page');
@@ -50,15 +51,34 @@ function sunset_custom_settings() {
   add_settings_field('post_formats', 'Post Formats', 'sunset_post_formats', 'imon_sunset_theme', 'sunset-theme-options');
   add_settings_field('custom-header', 'Custom Header', 'sunset_custom_header', 'imon_sunset_theme', 'sunset-theme-options');
   add_settings_field('custom-background', 'Custom Background', 'sunset_custom_background', 'imon_sunset_theme', 'sunset-theme-options');
-}
+
+  //Contact Form Options
+  register_setting('sunset-contact-options', 'activate_contact');
+
+  add_settings_section('sunset-contact-section', 'Contact Form', 'sunset_contact_section', 'imon_sunset_theme_contact');
+
+  add_settings_field( 'activate-form', 'Activate Contact Form', 'sunset_activate_contact', 'imon_sunset_theme_contact', 'sunset-contact-section'  );
+
+} // sunset_custom_settings
 
 //Post Formats Callback Function
 // function sunset_post_formats_callback($input){
 //   return $input;
 // }
 
+/*=============== Activate and Deactive =======================*/
 function sunset_theme_options() {
   echo 'Activate and Deactive specific Theme Support Options';
+}
+
+function sunset_contact_section() {
+  echo 'Activate and Deactive the Built-in Contact Form';
+}
+
+function sunset_activate_contact() {
+  $options =  get_option( 'activate_contact' );
+  $checked = (@$options == 1 ? 'checked' : '');
+  echo '<label><input type="checkbox" id="activate_contact" name="activate_contact" value="1" '. $checked .'/> Activate the Contact Form </label>';
 }
 
 function sunset_post_formats() {
@@ -83,7 +103,6 @@ function sunset_custom_background() {
   $options =  get_option( 'custom_background' );
   $checked = (@$options == 1 ? 'checked' : '');
   echo '<label><input type="checkbox" id="custom_background" name="custom_background" value="1" '. $checked .'/> Activate the Custom Background</label>';
- 
 }
 
 
@@ -138,7 +157,7 @@ function sunset_sanitize_x_handler($input) {
   return $output;
 }
 
-/*-------------- Template submenu functions =======================*/
+/*=============== Template submenu functions =======================*/
 
 function sunset_theme_create_page() {
   require_once(get_template_directory() . '/inc/templates/sunset-admin.php');
@@ -148,6 +167,13 @@ function sunset_theme_support_page() {
   require_once( get_template_directory() . '/inc/templates/sunset-theme-support.php' );
 }
 
+function sunset_contact_form_page() {
+  require_once( get_template_directory() . '/inc/templates/sunset-contact-form.php' );
+}
+
 function sunset_theme_settings_page() {
  echo '<h1>Sunset CSS Theme</h1>';
 }
+
+
+ 
