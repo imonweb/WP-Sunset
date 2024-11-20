@@ -12,7 +12,7 @@ function sunset_add_admin_page() {
   add_menu_page('Sunset Theme Options', 'Sunset', 'manage_options', 'imon_sunset', 'sunset_theme_create_page', get_template_directory_uri() . '/img/sunset-icon.png', 110);
 
   // Generate Sunset Admin Sub Pages
-  add_submenu_page('imon_sunset', 'Sunset Sidebar Option', 'Sidebar', 'manage_options', 'imon_sunset', 'sunset_theme_create_page');
+  add_submenu_page('imon_sunset', 'Sunset Sidebar Option', 'Sidebar', 'manage_options', 'imon_sunset', 'sunset_theme_settings_page');
   add_submenu_page('imon_sunset', 'Sunset Theme Option', 'Theme Options', 'manage_options', 'imon_sunset_theme','sunset_theme_support_page');
   add_submenu_page('imon_sunset', 'Sunset Contact Form', 'Contact Form', 'manage_options', 'imon_sunset_theme_contact','sunset_contact_form_page');
   add_submenu_page('imon_sunset', 'Sunset CSS Option', 'Custom CSS', 'manage_options', 'imon_sunset_css', 'sunset_theme_settings_page');
@@ -64,8 +64,8 @@ function sunset_custom_settings() {
 
   add_settings_section('sunset-custom-css-section', 'Custom CSS', 'sunset_custom_css_section_callback', 'imon_sunset_css');
 
-  add_settings_field('custom-css', 'Insert your Custom CSS', 'sunset_custom_css_callback', 'imon_sunset_css', 'sunset-custom-css-section');
-  
+  add_settings_field('custom-css', 'Insert your Custom CSS', 'sunset_custom_css_callback', 'imon_sunset_csss', 'sunset-custom-css-section');
+
 } // sunset_custom_settings
 
 /*=============== Activate and Deactive =======================*/
@@ -91,7 +91,7 @@ function sunset_contact_section() {
 function sunset_activate_contact() {
   $options =  get_option( 'activate_contact' );
   $checked = (@$options == 1 ? 'checked' : '');
-  echo '<label><input type="checkbox" id="custom_header" name="activate_contact" value="1" '. $checked .'/> Activate the Contact Form </label>';
+  echo '<label><input type="checkbox" id="activate_contact" name="activate_contact" value="1" '. $checked .'/> Activate the Contact Form </label>';
 }
 
 function sunset_post_formats() {

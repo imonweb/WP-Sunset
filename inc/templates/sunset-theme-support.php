@@ -1,4 +1,4 @@
-<h1>Sunset Sidebar Options</h1>
+<h1>Sunset Theme Support</h1>
 <?php settings_errors(); ?>
 
 <form action="options.php" method="post" class="sunset-general-form">
