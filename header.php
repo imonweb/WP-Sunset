@@ -50,36 +50,6 @@
               ?>
             </nav>
           </div><!-- .nav-container -->
-
-          <nav class="navbar navbar-expand-md navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">LOGO</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <div class="collapse navbar-collapse" id="main-menu">
-           <!-- <div class="navbar-nav"> -->
-            <?php
-           
-            wp_nav_menu(array(
-                'theme_location' => 'main-menu',
-                'container_class' => 'collapse navbar-collapse',
-                'container_id'    => 'navbarNavDropdown',
-                'menu_class'      => 'navbar-nav ms-auto',
-                'fallback_cb'     => '',
-                'menu_id'         => 'main-menu',
-                'depth'           => 2
-                // 'walker' => new bootstrap_5_wp_nav_menu_walker()
-            ));
-          
- 
-            ?>
-           
-           
-        </div>
-    </div>
-          </nav>
 					
 				</header><!-- .header-container -->
 				
