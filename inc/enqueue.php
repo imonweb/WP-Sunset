@@ -38,6 +38,7 @@ FRONT-END ENQUEUE FUNCTIONS
 function sunset_load_scripts() {
   wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '5.3.3', 'all' );
   wp_enqueue_style( 'sunset', get_template_directory_uri() . '/css/sunset.css', array(), '1.0.0', 'all' );
+  wp_enqueue_style( 'sunset-main-style', get_template_directory_uri() . '/build/index.css', array(), '1.0.0', 'all' );
   wp_enqueue_style( 'raleway', 'https://fonts.googleapis.com/css?family=Raleway:200,300,500' );
   // wp_enqueue_style( 'raleway', 'https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap' );
  

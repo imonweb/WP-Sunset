@@ -1,0 +1,48 @@
+$base-yellow: goldenrod;
+$base-white: #fff;
+ 
+.yellow {
+  color: $base-yellow;
+}
+
+.white {
+  color: $base-white;
+}
+
+body {
+  // background-color: $base-yellow;
+ 
+}
+  
+.nav-container { 
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    right: 0;
+    // border: 2px solid goldenrod;
+}
+
+.navbar.navbar-sunset {
+  display:block;
+  // flex-direction: row;
+  // justify-content:space-between;
+  align-items:center;
+}
+
+.navbar ul {
+  // -webkit-flex-direction: column;
+  // flex-direction: column;
+  // justify-content: flex-start;
+  // align-items: flex-start;
+  // flex-wrap: wrap;
+  a {
+  text-decoration: none;
+  list-style: none;
+  color: #fff;
+  }
+}
+
+ul#menu-header-menu {
+  display: flex;
+  flex-direction: column;
+}
