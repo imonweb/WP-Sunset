@@ -98,3 +98,11 @@
   background: rgba(0, 0, 0, 0.25) !important;
   color: #fff;
 }
+
+.navbar-nav .nav-link.active {
+  color: rgb(218, 162, 32);
+}
+
+.nav-link:hover {
+  color: chocolate;
+}

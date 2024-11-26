@@ -99,4 +99,12 @@
   color: #fff;
 }
 
+.navbar-nav .nav-link.active {
+  color: rgb(218, 162, 32);
+}
+
+.nav-link:hover {
+  color: chocolate;
+}
+
 /*# sourceMappingURL=index.css.map*/
