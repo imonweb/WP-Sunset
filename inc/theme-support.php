@@ -29,13 +29,23 @@ if(@$background == 1){
 
 add_theme_support( 'post-thumbnails' );
 
-/*  Activate Nav Menu Option */
+/*
+================================================
+  Activate Nav Menu Option 
+================================================
+*/
+
 function sunset_register_nav_menu() {
   register_nav_menu( 'primary', 'Header Navigation Menu' );
 }
 add_action( 'after_setup_theme', 'sunset_register_nav_menu');
 
-/* Blog Loop Custom Functions */
+/*
+================================================
+   Blog Loop Custom Functions
+================================================
+*/
+ 
 function sunset_posted_meta(){
   $posted_on = human_time_diff( get_the_time('U'), current_time('timestamp') );
 
@@ -56,6 +66,26 @@ function sunset_posted_meta(){
 }
 
 function sunset_posted_footer(){
-  return 'tags list and comment link';
+
+  $comments_num = get_comments_number();
+  if( comments_open() ){
+    if( $comments_num  = 0){
+      $comments = __('No Comments');
+    } elseif($comments_num > 1) {
+      $comments = $comments_num . __(' Comments');
+    } else {
+      $comments = __('1 Comment');
+    }
+    $comments = '<a href="' . get_comments_link() . '">' . $comments . ' <span class="sunset-icon sunset-comment"></span> </a>';
+  } else {
+    $comments = __('Comments are closed');
+  }
+  return '<div clas="post-footer-container"><div class="row"><div class="col-sm-12">' . get_the_tag_list('<div class="tags-list"><span class="sunset-icon sunset-tag"></span>', ' ', '</div>') . '</div><div class="col-md-12">'. $comments . '</div></div></div>';
 }
 
+/*
+================================================
+  
+================================================
+*/
+ 
