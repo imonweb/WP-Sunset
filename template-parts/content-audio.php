@@ -23,7 +23,10 @@
 	
 	<div class="entry-content">
 		
-		<?php the_content(); ?>
+		<?php 
+      $content = do_shortcode( apply_filters( 'the_content', $post->$post_content ) );
+      $embed = get_media_embedded_in_content( $content, array( 'audio', 'iframe' ) );
+    ?>
 	 
 	</div><!-- .entry-content -->
 	
